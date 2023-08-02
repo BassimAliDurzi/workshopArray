@@ -1,14 +1,23 @@
 package Lexicon;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class NameRepository {
 
     public static void main(String[] args) {
         getSize();
+
         setNames(names);
+
         clear();
+
         findAll();
+
+        String fullName = "";
+        find(fullName);
+
+        add(fullName);
 
 
     }
@@ -38,5 +47,44 @@ public class NameRepository {
         return returnNamesNewArray;
     }
 
+    public static String find(final String fullName) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please write the name to check if it is found or not:");
+        String checkFullName = scanner.nextLine();
+
+        Arrays.sort(newNames);
+        int elementIndex = Arrays.binarySearch(newNames, checkFullName);
+
+        if (elementIndex >= 0) {
+            System.out.println(newNames[elementIndex]);
+        } else {
+            System.out.println("null");
+        }
+        return String.valueOf(elementIndex);
+    }
+
+    public static boolean add(final String fullName) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please add a full name to the array:");
+        String addNewName = scanner.nextLine();
+
+        Arrays.sort(newNames);
+        int elementIndex = Arrays.binarySearch(newNames, addNewName);
+
+        if (elementIndex >= 0) {
+            System.out.println(false);
+            return false;
+        } else {
+            String[] updatedNewNames = Arrays.copyOf(newNames, newNames.length + 1);
+            updatedNewNames[updatedNewNames.length - 1] = addNewName;
+            System.out.println(Arrays.toString(updatedNewNames));
+            return true;
+        }
+
+    }
+
 
 }
+
+
+
