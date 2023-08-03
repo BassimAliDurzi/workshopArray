@@ -6,24 +6,27 @@ import java.util.Scanner;
 public class NameRepository {
 
     public static void main(String[] args) {
-        getSize();
+        //getSize();
 
-        setNames(names);
+        //setNames(names);
 
-        clear();
+        //clear();
 
-        findAll();
+        //findAll();
 
-        String fullName = "";
-        find(fullName);
+        //String fullName = "";
+        //find(fullName);
 
-        add(fullName);
+        //add(fullName);
+
+        String firstName = "";
+        findByFirstName(firstName);
 
 
     }
 
     private static String[] names = new String[0];
-    public static String[] newNames = {"Bassim Durzi", "Shubha Dhang", "Negar Baharmand", "Juan Oliver"};
+    public static String[] newNames = {"Bassim Durzi", "Justin Mora", "Wassim Abbas", "Omer Merza", "Bassim Durzi", "Justin Mora", "Wassim Abbas", "Maya Merza"};
 
     public static int getSize() {
         int arraySize = names.length;
@@ -81,8 +84,44 @@ public class NameRepository {
             return true;
         }
 
+
     }
 
+    public static void findByFirstName(final String firstName) {
+
+        String[] firstSplitName = new String[newNames.length];
+        String[] lastSplitName = new String[newNames.length];
+        String[] firstNameArray = Arrays.copyOf(firstSplitName, firstSplitName.length);
+        String[] lastNameArray = Arrays.copyOf(lastSplitName, lastSplitName.length);
+
+
+        for (int i = 0; i < newNames.length; i++) {
+            String fullNameElement = newNames[i];
+
+            String[] splitName = fullNameElement.split(" ", 2);
+            //System.out.println(Arrays.toString(splitName));
+
+            firstNameArray[i] = splitName[0];
+            System.out.println(Arrays.toString(firstNameArray));
+
+            lastNameArray[i] = splitName[1];
+            //System.out.println(Arrays.toString(updatedLastSplitName));
+        }
+
+        Arrays.sort(firstNameArray);
+        System.out.println(Arrays.toString(firstNameArray));
+        Scanner scanner = new Scanner(System.in);
+        String firstNameOfTheFullName = scanner.nextLine();
+
+        for (int j = 0; j < firstNameArray.length; j++) {
+            if (firstNameOfTheFullName == firstNameArray[j]) {
+                int indexOfFirstName = Arrays.binarySearch(firstNameArray, firstNameOfTheFullName);
+                System.out.println(indexOfFirstName);
+            }
+
+        }
+
+    }
 
 }
 
