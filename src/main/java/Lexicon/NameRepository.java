@@ -19,8 +19,16 @@ public class NameRepository {
 
         //add(fullName);
 
-        String firstName = "";
-        findByFirstName(firstName);
+        //String firstName = "";
+        //findByFirstName(firstName);
+
+
+        //String lastName = "";
+        //findByLastName(lastName);
+
+        String original = "";
+        String updatedName = "";
+        update(original, updatedName);
 
 
     }
@@ -90,45 +98,101 @@ public class NameRepository {
     }
 
     //Part 3
-    public static void findByFirstName(final String firstName) {
+    public static String[] findByFirstName(final String firstName) {
 
         String[] firstSplitName = new String[newNames.length];
-        String[] lastSplitName = new String[newNames.length];
         String[] firstNameArray = Arrays.copyOf(firstSplitName, firstSplitName.length);
-        String[] lastNameArray = Arrays.copyOf(lastSplitName, lastSplitName.length);
-
 
         for (int i = 0; i < newNames.length; i++) {
             String fullNameElement = newNames[i];
-
             String[] splitName = fullNameElement.split(" ", 2);
-            //System.out.println(Arrays.toString(splitName));
-
             firstNameArray[i] = splitName[0];
-            //System.out.println(Arrays.toString(firstNameArray));
-
-            lastNameArray[i] = splitName[1];
-            //System.out.println(Arrays.toString(updatedLastSplitName));
         }
 
-        Arrays.sort(firstNameArray,String.CASE_INSENSITIVE_ORDER);
+        //Arrays.sort(firstNameArray,String.CASE_INSENSITIVE_ORDER);
         System.out.println(Arrays.toString(firstNameArray));
         Scanner scanner = new Scanner(System.in);
         String firstNameOfTheFullName = scanner.nextLine();
 
+        String[] matchesNamesArray = new String[firstNameArray.length];
 
         for (int j = 0; j < firstNameArray.length; j++) {
-            if (firstNameOfTheFullName.equalsIgnoreCase(firstNameArray[j])) {
-                int position = Arrays.binarySearch(firstNameArray, firstNameOfTheFullName);
-                System.out.println("First name's index: " + (position - 1));
+            if (firstNameArray[j].equalsIgnoreCase(firstNameOfTheFullName)) {
+                matchesNamesArray[j] = firstNameArray[j];
+                //System.out.println("First name's index: " + (j));
             }
         }
+        System.out.println(Arrays.toString(matchesNamesArray));
 
+        return matchesNamesArray;
+    }
+
+    public static String[] findByLastName(final String lastName) {
+        String[] lastSplitName = new String[newNames.length];
+        String[] lastNameArray = Arrays.copyOf(lastSplitName, lastSplitName.length);
+
+        for (int i = 0; i < newNames.length; i++) {
+            String fullNameElement = newNames[i];
+            String[] splitName = fullNameElement.split(" ", 2);
+            lastNameArray[i] = splitName[1];
+        }
+
+        //Arrays.sort(firstNameArray,String.CASE_INSENSITIVE_ORDER);
+        System.out.println(Arrays.toString(lastNameArray));
+        Scanner scanner = new Scanner(System.in);
+        String firstNameOfTheFullName = scanner.nextLine();
+
+        String[] matchesNamesArray = new String[lastNameArray.length];
+
+        for (int j = 0; j < lastNameArray.length; j++) {
+            if (lastNameArray[j].equalsIgnoreCase(firstNameOfTheFullName)) {
+                matchesNamesArray[j] = lastNameArray[j];
+                //System.out.println("First name's index: " + (j));
+            }
+        }
+        System.out.println(Arrays.toString(matchesNamesArray));
+
+        return matchesNamesArray;
 
     }
 
+    public static boolean update(final String original, final String updatedName) {
 
+        String[] updateNameArray = Arrays.copyOf(newNames, newNames.length);
+        System.out.println(Arrays.toString(updateNameArray));
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please write the name which you want to find:");
+        String findName = scanner.nextLine();
+
+        Arrays.sort(updateNameArray);
+        int findNameIndex = Arrays.binarySearch(updateNameArray, findName);
+        System.out.println(findNameIndex);
+
+        if (findNameIndex < 0) {
+            System.out.println("The name which you wrote is not found");
+        }
+
+        if (findNameIndex > 0) {
+            for (int i = 0; i < updateNameArray.length; i++) {
+                if (findName.equalsIgnoreCase(updateNameArray[i])) {
+                    System.out.println("Index " + i);
+                    System.out.println("Please write the new full name which you want to replace the old one:");
+                    String newFullName = scanner.nextLine();
+
+                    if (newFullName.equalsIgnoreCase(updateNameArray[i]))
+                        //System.out.println("The name is already exist");
+                        return false;
+
+                    updateNameArray[i] = newFullName;
+                    System.out.println(Arrays.toString(updateNameArray));
+                }
+            }
+        }
+        return false;
+    }
 }
+
 
 
 
