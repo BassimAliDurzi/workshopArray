@@ -167,7 +167,7 @@ public class NameRepository {
 
         Arrays.sort(updateNameArray);
         int findNameIndex = Arrays.binarySearch(updateNameArray, findName);
-        System.out.println(findNameIndex);
+        //System.out.println(findNameIndex);
 
         if (findNameIndex < 0) {
             System.out.println("The name which you wrote is not found");
@@ -181,7 +181,6 @@ public class NameRepository {
                     String newFullName = scanner.nextLine();
 
                     if (newFullName.equalsIgnoreCase(updateNameArray[i]))
-                        //System.out.println("The name is already exist");
                         return false;
 
                     updateNameArray[i] = newFullName;
@@ -191,6 +190,7 @@ public class NameRepository {
         }
         return false;
     }
+//Part 4:
 }
 
 
