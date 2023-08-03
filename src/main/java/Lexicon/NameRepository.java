@@ -25,6 +25,7 @@ public class NameRepository {
 
     }
 
+    //Part 1
     private static String[] names = new String[0];
     public static String[] newNames = {"Bassim Durzi", "Justin Mora", "Wassim Abbas", "Omer Merza", "Bassim Durzi", "Justin Mora", "Wassim Abbas", "Maya Merza"};
 
@@ -50,6 +51,7 @@ public class NameRepository {
         return returnNamesNewArray;
     }
 
+    //part2
     public static String find(final String fullName) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please write the name to check if it is found or not:");
@@ -87,6 +89,7 @@ public class NameRepository {
 
     }
 
+    //Part 3
     public static void findByFirstName(final String firstName) {
 
         String[] firstSplitName = new String[newNames.length];
@@ -102,26 +105,28 @@ public class NameRepository {
             //System.out.println(Arrays.toString(splitName));
 
             firstNameArray[i] = splitName[0];
-            System.out.println(Arrays.toString(firstNameArray));
+            //System.out.println(Arrays.toString(firstNameArray));
 
             lastNameArray[i] = splitName[1];
             //System.out.println(Arrays.toString(updatedLastSplitName));
         }
 
-        Arrays.sort(firstNameArray);
+        Arrays.sort(firstNameArray,String.CASE_INSENSITIVE_ORDER);
         System.out.println(Arrays.toString(firstNameArray));
         Scanner scanner = new Scanner(System.in);
         String firstNameOfTheFullName = scanner.nextLine();
 
-        for (int j = 0; j < firstNameArray.length; j++) {
-            if (firstNameOfTheFullName == firstNameArray[j]) {
-                int indexOfFirstName = Arrays.binarySearch(firstNameArray, firstNameOfTheFullName);
-                System.out.println(indexOfFirstName);
-            }
 
+        for (int j = 0; j < firstNameArray.length; j++) {
+            if (firstNameOfTheFullName.equalsIgnoreCase(firstNameArray[j])) {
+                int position = Arrays.binarySearch(firstNameArray, firstNameOfTheFullName);
+                System.out.println("First name's index: " + (position - 1));
+            }
         }
 
+
     }
+
 
 }
 
