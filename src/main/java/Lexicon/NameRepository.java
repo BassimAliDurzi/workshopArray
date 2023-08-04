@@ -6,29 +6,29 @@ import java.util.Scanner;
 public class NameRepository {
 
     public static void main(String[] args) {
-        //getSize();
+        getSize();
 
-        //setNames(names);
+        setNames(names);
 
-        //clear();
+        clear();
 
-        //findAll();
+        findAll();
 
-        //String fullName = "";
-        //find(fullName);
+        String fullName = "";
+        find(fullName);
 
-        //add(fullName);
+        add(fullName);
 
-        //String firstName = "";
-        //findByFirstName(firstName);
+        String firstName = "";
+        findByFirstName(firstName);
 
 
-        //String lastName = "";
-        //findByLastName(lastName);
+        String lastName = "";
+        findByLastName(lastName);
 
-        //String original = "";
-        //String updatedName = "";
-        //update(original, updatedName);
+        String original = "";
+        String updatedName = "";
+        update(original, updatedName);
 
         String removeFullName = "";
         remove(removeFullName);
@@ -53,11 +53,12 @@ public class NameRepository {
 
     public static void clear() {
         names = Arrays.copyOf(names, 0);
-        System.out.println(Arrays.toString(names));
+        System.out.println( "The empty array:  "+ Arrays.toString(names));
     }
 
     public static String[] findAll() {
         String[] returnNamesNewArray = Arrays.copyOf(newNames, newNames.length);
+        System.out.println("\"Returns all names in a new array \"");
         System.out.println(Arrays.toString(returnNamesNewArray));
         return returnNamesNewArray;
     }
@@ -65,6 +66,7 @@ public class NameRepository {
     //part2
     public static String find(final String fullName) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println(Arrays.toString(newNames));
         System.out.println("Please write the name to check if it is found or not:");
         String checkFullName = scanner.nextLine();
 
@@ -81,6 +83,7 @@ public class NameRepository {
 
     public static boolean add(final String fullName) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println(Arrays.toString(newNames));
         System.out.println("Please add a full name to the array:");
         String addNewName = scanner.nextLine();
 
@@ -114,6 +117,7 @@ public class NameRepository {
 
         //Arrays.sort(firstNameArray,String.CASE_INSENSITIVE_ORDER);
         System.out.println(Arrays.toString(firstNameArray));
+        System.out.println("Type the first name which you to find it: ");
         Scanner scanner = new Scanner(System.in);
         String firstNameOfTheFullName = scanner.nextLine();
 
@@ -142,6 +146,7 @@ public class NameRepository {
 
         //Arrays.sort(firstNameArray,String.CASE_INSENSITIVE_ORDER);
         System.out.println(Arrays.toString(lastNameArray));
+        System.out.println("Type the last name which you want to find it: ");
         Scanner scanner = new Scanner(System.in);
         String firstNameOfTheFullName = scanner.nextLine();
 
