@@ -26,9 +26,12 @@ public class NameRepository {
         //String lastName = "";
         //findByLastName(lastName);
 
-        String original = "";
-        String updatedName = "";
-        update(original, updatedName);
+        //String original = "";
+        //String updatedName = "";
+        //update(original, updatedName);
+
+        String removeFullName = "";
+        remove(removeFullName);
 
 
     }
@@ -188,9 +191,38 @@ public class NameRepository {
                 }
             }
         }
-        return false;
+        return true;
     }
-//Part 4:
+
+    //Part 4:
+    public static boolean remove(final String fullName) {
+
+        String[] removeNameArray = Arrays.copyOf(newNames, newNames.length);
+        System.out.println(Arrays.toString(removeNameArray));
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please write the name which you want to remove:");
+        String findName = scanner.nextLine();
+
+        Arrays.sort(removeNameArray);
+        int findNameIndex = Arrays.binarySearch(removeNameArray, findName);
+
+        if (findNameIndex < 0) {
+            System.out.println("The name is not found");
+            return false;
+        }
+
+        for (int i = 0; i < removeNameArray.length; i++) {
+            if (removeNameArray[i].equalsIgnoreCase(findName)) {
+                removeNameArray[i] = "null";
+                System.out.println(Arrays.toString(removeNameArray));
+            }
+
+        }
+
+        return true;
+    }
+
 }
 
 
